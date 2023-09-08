@@ -82,4 +82,4 @@
     return $book['author'] === "Wole Soyinka";
   });
 
-  require "index.view.php";
+  require "views/index.view.php";
