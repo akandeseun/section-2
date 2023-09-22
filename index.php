@@ -3,6 +3,7 @@
 // require "router.php";
 
 require "functions.php";
+require "Database.php";
 
 
 // brief review on classes
@@ -30,18 +31,18 @@ require "functions.php";
 
 // Step 1 - initialize PDO (create a new instance of the PDO class)
 
-$dsn = "mysql:host=localhost;port=3306;dbname=myapp;charset=utf8mb4;user=root;password=akandeseun44;";
 
-$pdo = new PDO($dsn);
-
-$statement = $pdo->prepare("select * from posts");
-
-$statement->execute();
-
-$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 // dieAndDump($posts);
 
-foreach ($posts as $post) {
-  echo "<li>" . $post['title'] . "</li>";
-}
+
+
+// connect to the database, and execute a query
+
+
+
+$db = new Database();
+
+$posts = $db->query("select * from posts where id = 2")->fetch(PDO::FETCH_ASSOC);
+
+dieAndDump($posts);
