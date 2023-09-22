@@ -12,8 +12,6 @@ class Database
   }
   public function query($query)
   {
-
-
     $statement = $this->connection->prepare($query);
 
     $statement->execute();
