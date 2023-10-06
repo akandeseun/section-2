@@ -5,44 +5,18 @@
 require "functions.php";
 require "Database.php";
 
-
-// brief review on classes
-
-// class Person
-// {
-//   public $name;
-//   public $age;
-
-//   public function breathe()
-//   {
-//     echo $this->name . " is breathing";
-//   }
-// }
-
-// $person = new Person();
-
-// $person->name = 'Seun Akande';
-// $person->age = 30;
-
-// dieAndDump($person->breathe());
-
-// ----------------
-// connect to our MySQL database.
-
-// Step 1 - initialize PDO (create a new instance of the PDO class)
-
-
-
-// dieAndDump($posts);
-
-
-
 // connect to the database, and execute a query
+$config = require "config.php";
 
+$db = new Database($config["database"], "root", "akandeseun44");
 
+$id = $_GET["id"];
+// dieAndDump($_GET["id"]);
 
-$db = new Database();
+$query = "select * from posts where id = ?";
 
-$posts = $db->query("select * from posts where id = 2")->fetch(PDO::FETCH_ASSOC);
+// dieAndDump($query);
+
+$posts = $db->query($query, [$id])->fetch();
 
 dieAndDump($posts);
